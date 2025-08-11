@@ -1,0 +1,54 @@
+Step by step commands in Parrot OS
+
+sudo apt update
+sudo apt install wireshark -y
+
+
+ip a
+
+
+sudo tshark -i eth0 -w capture.pcap
+
+ping -c 5 google.com
+curl http://example.com
+
+
+
+
+
+tshark -r capture.pcap -Y "http"
+tshark -r capture.pcap -Y "dns"
+tshark -r capture.pcap -Y "tcp"
+
+
+
+tshark -r capture.pcap -T fields -e _ws.col.Protocol | sort | uniq -c
+
+
+
+
+
+mv capture.pcap ~/Documents/my_capture.pcap
+
+
+
+tshark -r ~/Documents/my_capture.pcap -T fields -e frame.number -e ip.src -e ip.dst -e _ws.col.Protocol -e frame.len
+
+
+capinfos ~/Documents/my_capture.pcap
+
+
+
+Output
+Protocols observed: ICMP, DNS, HTTP, TCP
+Total packets: 120
+Top talkers:
+  - 192.168.1.10 → 8.8.8.8 (DNS)
+  - 192.168.1.10 → 93.184.216.34 (HTTP)
+  - 192.168.1.10 → 142.250.183.206 (ICMP)
+Average packet size: ~74 bytes
+
+
+
+
+
